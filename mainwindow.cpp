@@ -6,6 +6,7 @@
 #include <QLabel>
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -19,13 +20,37 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_radioButton_3_clicked()
+
+
+void MainWindow::on_pushButton_clicked()
 {
+    this->hide();
+    simwin = new SimulationWindow();
+    simwin->show();
+}
+
+void MainWindow::on_ps_clicked()
+{
+    ui->p_priority0->setDisabled(0);
 
 }
 
-void MainWindow::on_radioButton_3_pressed()
+void MainWindow::on_sjf_clicked()
 {
-    ui->p->setDisabled(0);
+    ui->p_priority0->setDisabled(1);
 }
 
+void MainWindow::on_fcfs_clicked()
+{
+    ui->p_priority0->setDisabled(1);
+}
+
+void MainWindow::on_rr_clicked()
+{
+    ui->p_priority0->setDisabled(1);
+}
+
+void MainWindow::on_add_process_clicked()
+{
+
+}
