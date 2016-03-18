@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGridLayout>
+
 #include "simulationwindow.h"
 
 namespace Ui {
@@ -17,10 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_radioButton_3_clicked();
-
-    void on_radioButton_3_pressed();
-
 
     void on_pushButton_clicked();
 
@@ -37,6 +35,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     SimulationWindow *simwin;
+    QGridLayout *process_grid;
+    QWidget *viewport ;
+    int num_of_process;
 
 };
 

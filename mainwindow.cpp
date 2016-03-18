@@ -4,6 +4,11 @@
 #include <utility>
 #include <queue>
 #include <QLabel>
+#include <QLineEdit>
+#include <QWidget>
+#include <QPushButton>
+
+
 
 
 
@@ -12,6 +17,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    process_grid = new QGridLayout();
+    viewport = new QWidget;
+    viewport->setLayout(process_grid);
+    ui->process_area->setWidget(viewport);
+
+    num_of_process = 0;
 
 }
 
@@ -31,26 +42,41 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_ps_clicked()
 {
-    ui->p_priority0->setDisabled(0);
+    //ui->p_priority0->setDisabled(0);
 
 }
 
 void MainWindow::on_sjf_clicked()
 {
-    ui->p_priority0->setDisabled(1);
+    //ui->p_priority0->setDisabled(1);
 }
 
 void MainWindow::on_fcfs_clicked()
 {
-    ui->p_priority0->setDisabled(1);
+    //ui->p_priority0->setDisabled(1);
 }
 
 void MainWindow::on_rr_clicked()
 {
-    ui->p_priority0->setDisabled(1);
+   // ui->p_priority0->setDisabled(1);
 }
 
 void MainWindow::on_add_process_clicked()
 {
+    QLineEdit *arriv = new QLineEdit();
+    QLineEdit *burst = new QLineEdit();
+    QLineEdit *prio  = new QLineEdit();
+    QPushButton *btn = new QPushButton("x");
+
+    arriv->setObjectName(QString("p_arrival%1").arg(num_of_process));
+    burst->setObjectName(QString("p_burst%1").arg(num_of_process));
+    prio->setObjectName(QString("p_priority%1").arg(num_of_process));
+    btn->setObjectName(QString("p_delbtn%1").arg(num_of_process));
+
+    process_grid->addWidget(arriv,num_of_process,0);
+    process_grid->addWidget(burst,num_of_process,1);
+    process_grid->addWidget(prio,num_of_process,2);
+    process_grid->addWidget(btn,num_of_process,3);
+    num_of_process++;
 
 }
