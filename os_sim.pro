@@ -14,10 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    simulationwindow.cpp
+    simulationwindow.cpp \
+    FirstComeFirstServed.cpp \
+    Process.cpp
 
 HEADERS  += mainwindow.h \
-    simulationwindow.h
+    simulationwindow.h \
+    SchedulingAlgorithm.h \
+    Process.h \
+    RoundRobin.h \
+    FirstComeFirstServed.h
 
 FORMS    += mainwindow.ui \
     simulationwindow.ui
