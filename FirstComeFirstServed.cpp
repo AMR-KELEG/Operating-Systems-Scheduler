@@ -1,34 +1,37 @@
 #include "FirstComeFirstServed.h"
 
-FirstComeFirstServed::FirstComeFirstServed()
-{
+FirstComeFirstServed::FirstComeFirstServed(){}
 
+void FirstComeFirstServed::InitializeScheduler(std::vector<Process> p)
+{
+    for(unsigned int i=0;i<p.size();i++)
+        addNewProcess(p[i]);
 }
 
 void FirstComeFirstServed::addNewProcess(Process p)
 {
-    q.enqueue(p);
-}
-
-Process FirstComeFirstServed::getNextProcess()
-{
-    if(q.empty())
-        return Process::GetNullProcess();
-    return q.head();
+    ReadyQueue.push_back(p);
 }
 
 
 bool FirstComeFirstServed::allProcessesDone()
 {
-    return q.empty();
+    return ReadyQueue.empty();
 }
 
-void FirstComeFirstServed::InitializeScheduler(std::vector<Process> p)
+Process FirstComeFirstServed::getNextProcess()
 {
-
+    if(ReadyQueue.empty())
+        return Process::GetNullProcess();
+    return ReadyQueue.front();
 }
+
 
 int FirstComeFirstServed::executeCurrentProcess()
 {
-    return 0;
+    if(allProcessesDone())
+        return -1;
+    Process currentProcess=ReadyQueue.front();
+    ReadyQueue.pop_front();
+    return currentProcess.getBurstTime();
 }

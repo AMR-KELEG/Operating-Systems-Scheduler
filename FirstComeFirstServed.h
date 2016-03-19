@@ -1,11 +1,10 @@
 #ifndef FIRSTCOMEFIRSTSERVED_H
 #define FIRSTCOMEFIRSTSERVED_H
 #include "SchedulingAlgorithm.h"
-#include <QQueue>
 class FirstComeFirstServed:public SchedulingAlgorithm
 {
 private:
-    QQueue<Process> q;
+    std::list<Process> ReadyQueue;
 
 public:
     FirstComeFirstServed();
@@ -14,8 +13,6 @@ public:
     bool allProcessesDone();
     void InitializeScheduler(std::vector<Process> p);
     int executeCurrentProcess();
-    void ChangeAlgorithm(SchedulingAlgorithm * sa);
-
 };
 
 #endif // FIRSTCOMEFIRSTSERVED_H
