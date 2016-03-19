@@ -5,7 +5,8 @@ class Process{
     int priority;
     int burst_time;
     int arrival_time;
-
+    //id
+    //QtColor
 
     public:
     static Process GetNullProcess();
