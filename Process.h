@@ -7,9 +7,7 @@ class Process{
     int arrivalTime;
     int burstTime;
     int priority;
-    Qt::GlobalColor color;
-
-
+   // Qt::GlobalColor color;
     //id
     //QtColor
 

@@ -92,7 +92,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="p_quanta">
+   <widget class="QLineEdit" name="pQuanta">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -190,7 +190,7 @@
           <x>0</x>
           <y>0</y>
           <width>477</width>
-          <height>162</height>
+          <height>166</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout"/>
@@ -206,7 +206,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

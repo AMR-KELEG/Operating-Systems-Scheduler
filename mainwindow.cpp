@@ -36,39 +36,63 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     int arrivalTime,burstTime,priority;
-    QString q=QString("p_arrival%1").arg(0);
+    quanta = ui->pQuanta->text().toInt();
+
+
     for(int i=0;i<num_of_process;i++)
     {
-        //arrivalTime=ui->process_area->findChild();
-        //burstTime=ui->process_area->findChildren(QString("p_burst%1").arg(i));
-        //priority=ui->process_area->findChild(QString("p_priority%1").arg(i));
-        processVector.push_back(Process(i+1));
+        arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
+        burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
+        priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
+        processVector.push_back(Process(i+1,arrivalTime,burstTime,priority));
     }
 
     this->hide();
-    simwin = new SimulationWindow();
+    simwin = new SimulationWindow(processVector ,quanta, algorithm );
     simwin->show();
 }
 
 void MainWindow::on_ps_clicked()
 {
-    //ui->p_priority0->setDisabled(0);
+    for(int i=0; i<num_of_process; i++)
+    {
+       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(0);
+    }
+
+    algorithm = QString("ps");
 
 }
 
 void MainWindow::on_sjf_clicked()
 {
-    //ui->p_priority0->setDisabled(1);
+    for(int i=0; i<num_of_process; i++)
+    {
+       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+    }
+
+    algorithm = QString("sjf");
 }
 
 void MainWindow::on_fcfs_clicked()
 {
-    //ui->p_priority0->setDisabled(1);
+    for(int i=0; i<num_of_process; i++)
+    {
+       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+    }
+
+    algorithm = QString("fcfs");
+
 }
 
 void MainWindow::on_rr_clicked()
 {
-   // ui->p_priority0->setDisabled(1);
+    for(int i=0; i<num_of_process; i++)
+    {
+       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+    }
+
+    algorithm = QString("rr");
+
 }
 
 void MainWindow::on_add_process_clicked()
@@ -78,10 +102,10 @@ void MainWindow::on_add_process_clicked()
     QLineEdit *prio  = new QLineEdit();
     QPushButton *btn = new QPushButton("x");
 
-    arriv->setObjectName(QString("p_arrival%1").arg(num_of_process));
-    burst->setObjectName(QString("p_burst%1").arg(num_of_process));
-    prio->setObjectName(QString("p_priority%1").arg(num_of_process));
-    btn->setObjectName(QString("p_delbtn%1").arg(num_of_process));
+    arriv->setObjectName(QString("pArrival%1").arg(num_of_process));
+    burst->setObjectName(QString("pBurst%1").arg(num_of_process));
+    prio->setObjectName(QString("pPriority%1").arg(num_of_process));
+    btn->setObjectName(QString("pDelbtn%1").arg(num_of_process));
 
     process_grid->addWidget(arriv,num_of_process,0);
     process_grid->addWidget(burst,num_of_process,1);
