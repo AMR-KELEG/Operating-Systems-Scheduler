@@ -4,31 +4,32 @@ Process Process::GetNullProcess()
     return Process(0,0,0);
 }
 
-Process::Process(int p=0,int b=0,int a=0)
+Process::Process(int id,int a,int b,int p)
 {
+    this->id=id;
     priority=p;
-    burst_time=b;
-    arrival_time=a;
+    burstTime=b;
+    arrivalTime=a;
 }
 
-int Process::getArrival_time() const
+int Process::getArrivalTime() const
 {
-    return arrival_time;
+    return arrivalTime;
 }
 
-void Process::setArrival_time(int value)
+void Process::setArrivalTime(int value)
 {
-    arrival_time = value;
+    arrivalTime = value;
 }
 
-int Process::getBurst_time() const
+int Process::getBurstTime() const
 {
-    return burst_time;
+    return burstTime;
 }
 
-void Process::setBurst_time(int value)
+void Process::setBurstTime(int value)
 {
-    burst_time = value;
+    burstTime = value;
 }
 
 int Process::getPriority() const

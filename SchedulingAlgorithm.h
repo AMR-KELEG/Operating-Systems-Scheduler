@@ -4,13 +4,13 @@
 
 class SchedulingAlgorithm
 {
+virtual void addNewProcess(Process p)=0; // make private
 public:
-    // void InitializeScheduler(vector<Process> p)=0;
-    virtual void AddNewProcess(Process p)=0; // make private
+    virtual void InitializeScheduler(std::vector<Process> p)=0;
 
-    virtual Process FindNextProcess()=0; //Get
-    // virtual int executeCurrentProcess()=0;
-    virtual bool AllProcessesDone()=0;
+    virtual Process getNextProcess()=0;
+    virtual int executeCurrentProcess()=0;
+    virtual bool allProcessesDone()=0;
 
     void ChangeAlgorithm(SchedulingAlgorithm * sa);
 };

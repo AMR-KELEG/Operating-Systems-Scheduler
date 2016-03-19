@@ -25,7 +25,7 @@ void fillStack(std::stack<Qt::GlobalColor> &colorStack){
     colorStack.push(Qt::darkGreen);
 }
 
-SimulationWindow::SimulationWindow(QWidget *parent) :
+SimulationWindow::SimulationWindow(std::vector<Process> vv ,int quantum,QString algo,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SimulationWindow)
 {

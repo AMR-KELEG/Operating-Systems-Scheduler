@@ -35,6 +35,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    int arrivalTime,burstTime,priority;
+    QString q=QString("p_arrival%1").arg(0);
+    for(int i=0;i<num_of_process;i++)
+    {
+        //arrivalTime=ui->process_area->findChild();
+        //burstTime=ui->process_area->findChildren(QString("p_burst%1").arg(i));
+        //priority=ui->process_area->findChild(QString("p_priority%1").arg(i));
+        processVector.push_back(Process(i+1));
+    }
+
     this->hide();
     simwin = new SimulationWindow();
     simwin->show();

@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QGridLayout>
-
+#include <QString>
 #include "simulationwindow.h"
+#include "Process.h"
+#include <vector>
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +40,9 @@ private:
     QGridLayout *process_grid;
     QWidget *viewport ;
     int num_of_process;
+    std::vector<Process> processVector;
+    int quanta;
+    QString algorithm;
 
 };
 

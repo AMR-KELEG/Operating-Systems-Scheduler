@@ -9,9 +9,12 @@ private:
 
 public:
     FirstComeFirstServed();
-    void AddNewProcess(Process p);
-    Process FindNextProcess();
-    bool AllProcessesDone();
+    void addNewProcess(Process p);
+    Process getNextProcess();
+    bool allProcessesDone();
+    void InitializeScheduler(std::vector<Process> p);
+    int executeCurrentProcess();
+    void ChangeAlgorithm(SchedulingAlgorithm * sa);
 
 };
 

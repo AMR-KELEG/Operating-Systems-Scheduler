@@ -1,23 +1,28 @@
 #ifndef PROCESS_H
 #define PROCESS_H
+#include <QMainWindow>
 class Process{
     private:
+    int id;
+    int arrivalTime;
+    int burstTime;
     int priority;
-    int burst_time;
-    int arrival_time;
+    Qt::GlobalColor color;
+
+
     //id
     //QtColor
 
     public:
     static Process GetNullProcess();
 
-    Process(int p,int b,int a);
+    Process(int id=-1,int a=0,int b=0,int p=0);
     int getPriority() const;
     void setPriority(int value);
-    int getBurst_time() const;
-    void setBurst_time(int value);
-    int getArrival_time() const;
-    void setArrival_time(int value);
+    int getBurstTime() const;
+    void setBurstTime(int value);
+    int getArrivalTime() const;
+    void setArrivalTime(int value);
 };
 
 #endif // PROCESS_H
