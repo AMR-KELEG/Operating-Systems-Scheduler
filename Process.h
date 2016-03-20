@@ -11,7 +11,7 @@ class Process{
     public:
     static Process GetNullProcess();
 
-    Process(int id=-1,int a=0,int b=0,int p=0);
+    Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::black);
     int getPriority() const;
     void setPriority(int value);
     int getBurstTime() const;

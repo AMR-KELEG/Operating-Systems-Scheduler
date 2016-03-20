@@ -21,15 +21,16 @@ void Process::setColor(const Qt::GlobalColor &value)
 
 Process Process::GetNullProcess()
 {
-    return Process(0,0,0);
+    return Process();
 }
 
-Process::Process(int id,int a,int b,int p)
+Process::Process(int id,int a,int b,int p, Qt::GlobalColor c)
 {
     this->id=id;
     priority=p;
     burstTime=b;
     arrivalTime=a;
+    color=c;
 }
 
 int Process::getArrivalTime() const
