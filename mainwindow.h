@@ -42,7 +42,7 @@ private:
     int num_of_process;
     std::vector<Process> processVector;
     int quanta;
-    QString algorithm;
+    std::string algorithm;
 
 };
 

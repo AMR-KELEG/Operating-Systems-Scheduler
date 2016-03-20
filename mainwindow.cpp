@@ -59,7 +59,7 @@ void MainWindow::on_ps_clicked()
        ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(0);
     }
 
-    algorithm = QString("ps");
+    algorithm = "ps";
 
 }
 
@@ -70,7 +70,7 @@ void MainWindow::on_sjf_clicked()
        ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
     }
 
-    algorithm = QString("sjf");
+    algorithm = "sjf";
 }
 
 void MainWindow::on_fcfs_clicked()
@@ -80,7 +80,7 @@ void MainWindow::on_fcfs_clicked()
        ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
     }
 
-    algorithm = QString("fcfs");
+    algorithm = "fcfs";
 
 }
 
@@ -91,7 +91,7 @@ void MainWindow::on_rr_clicked()
        ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
     }
 
-    algorithm = QString("rr");
+    algorithm = "rr";
 
 }
 

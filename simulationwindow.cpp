@@ -1,10 +1,7 @@
 #include "simulationwindow.h"
 #include "ui_simulationwindow.h"
-#include <QTimer>
 
-#include <vector>
-#include <algorithm>
-#include <stack>
+
 
 void fillStack(std::stack<Qt::GlobalColor> &colorStack){
     colorStack.push(Qt::darkYellow);
@@ -25,45 +22,49 @@ void fillStack(std::stack<Qt::GlobalColor> &colorStack){
     colorStack.push(Qt::darkGreen);
 }
 
-SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quantum, QString algo,QWidget *parent) :
+SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quantum, std::string algo,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SimulationWindow)
 {
     ui->setupUi(this);
 
-    int currentColumnCount;
-
-    // first come first served
-    std::vector<std::pair<int,int>>v; // arrival time , burst time
+    int currentColumnCount;    
     std::stack<Qt::GlobalColor> colorStack;
 
-    // some tasks
-    v.push_back({2,4});
-    v.push_back({1,2});
-    v.push_back({1,4});
-    v.push_back({1,4});
-    v.push_back({1,4});
-
-    sort(v.begin(),v.end());
-
-    Qt::GlobalColor color;
-    for (int i = 0; i < v.size(); ++i) {
+    // assign color to each process
+    for (auto &i : processVector) {
         if(colorStack.empty()){
             fillStack(colorStack);
         }
-        color = colorStack.top();
+        i.setColor(colorStack.top());
         colorStack.pop();
+    }
 
-        for (int j = 0; j < v[i].second; ++j) {
+    if(algo == "fcfs"){
+        algorithm = new FirstComeFirstServed();
+    }else if(algo == "sjf"){
+
+    }else if(algo == "ps"){
+
+    }else if(algo == "rr"){
+
+    }
+
+    algorithm = new FirstComeFirstServed();
+    algorithm->InitializeScheduler(processVector);
+
+    while(!algorithm->allProcessesDone()) {
+        Process temp = algorithm->getNextProcess();
+        int executionTime = algorithm->executeCurrentProcess();
+        for (int j = 0; j < executionTime; ++j) {
             currentColumnCount = ui->tableWidget->columnCount();
             ui->tableWidget->setColumnCount(++currentColumnCount);
             ui->tableWidget->setItem(0,currentColumnCount-1 , new QTableWidgetItem);
-            ui->tableWidget->item(0,currentColumnCount-1)->setBackground(color);
+            ui->tableWidget->item(0,currentColumnCount-1)->setBackground(temp.getColor());
             ui->tableWidget->item(0,currentColumnCount-1)->setTextAlignment(Qt::AlignCenter);
-            ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(i+1));
+            ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(temp.getId()));
         }
     }
-
 }
 
 SimulationWindow::~SimulationWindow()

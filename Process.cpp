@@ -1,4 +1,24 @@
 #include "Process.h"
+int Process::getId() const
+{
+    return id;
+}
+
+void Process::setId(int value)
+{
+    id = value;
+}
+
+Qt::GlobalColor Process::getColor() const
+{
+    return color;
+}
+
+void Process::setColor(const Qt::GlobalColor &value)
+{
+    color = value;
+}
+
 Process Process::GetNullProcess()
 {
     return Process(0,0,0);

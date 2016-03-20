@@ -17,7 +17,11 @@ class Process{
     int getBurstTime() const;
     void setBurstTime(int value);
     int getArrivalTime() const;
-    void setArrivalTime(int value);
+    void setArrivalTime(int value);    
+    int getId() const;
+    void setId(int value);
+    Qt::GlobalColor getColor() const;
+    void setColor(const Qt::GlobalColor &value);
 };
 
 #endif // PROCESS_H
