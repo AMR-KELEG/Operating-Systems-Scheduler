@@ -107,6 +107,8 @@ void MainWindow::on_add_process_clicked()
     prio->setObjectName(QString("pPriority%1").arg(num_of_process));
     btn->setObjectName(QString("pDelbtn%1").arg(num_of_process));
 
+    if(algorithm == "sjf" || algorithm == "fcfs" || algorithm == "rr") prio->setDisabled(1);
+
     process_grid->addWidget(arriv,num_of_process,0);
     process_grid->addWidget(burst,num_of_process,1);
     process_grid->addWidget(prio,num_of_process,2);
