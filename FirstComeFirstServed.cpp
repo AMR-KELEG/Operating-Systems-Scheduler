@@ -1,11 +1,11 @@
 #include "FirstComeFirstServed.h"
-
 FirstComeFirstServed::FirstComeFirstServed(){}
 
 void FirstComeFirstServed::InitializeScheduler(std::vector<Process> p)
 {
     for(unsigned int i=0;i<p.size();i++)
         addNewProcess(p[i]);
+    qSort(ReadyQueue.begin(),ReadyQueue.end(),Process::isLess);
 }
 
 void FirstComeFirstServed::addNewProcess(Process p)

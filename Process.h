@@ -10,7 +10,7 @@ class Process{
     Qt::GlobalColor color;
     public:
     static Process GetNullProcess();
-
+    static bool isLess(Process p1,Process p2);
     Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::black);
     int getPriority() const;
     void setPriority(int value);
@@ -22,6 +22,7 @@ class Process{
     void setId(int value);
     Qt::GlobalColor getColor() const;
     void setColor(const Qt::GlobalColor &value);
+
 };
 
 #endif // PROCESS_H
