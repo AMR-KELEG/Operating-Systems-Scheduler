@@ -50,7 +50,6 @@ SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quant
 
     }
 
-    algorithm = new FirstComeFirstServed();
     algorithm->InitializeScheduler(processVector);
 
     while(!algorithm->allProcessesDone()) {

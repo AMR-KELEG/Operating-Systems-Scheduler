@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->process_area->setWidget(viewport);
 
     num_of_process = 0;
+    MainWindow::on_fcfs_clicked();
 
 }
 
@@ -60,6 +61,8 @@ void MainWindow::on_ps_clicked()
     }
 
     algorithm = "ps";
+    ui->pQuanta->setDisabled(1);
+    ui->prempetive->setEnabled(1);
 
 }
 
@@ -71,6 +74,8 @@ void MainWindow::on_sjf_clicked()
     }
 
     algorithm = "sjf";
+    ui->pQuanta->setDisabled(1);
+    ui->prempetive->setEnabled(1);
 }
 
 void MainWindow::on_fcfs_clicked()
@@ -81,6 +86,8 @@ void MainWindow::on_fcfs_clicked()
     }
 
     algorithm = "fcfs";
+    ui->pQuanta->setDisabled(1);
+    ui->prempetive->setDisabled(1);
 
 }
 
@@ -92,6 +99,8 @@ void MainWindow::on_rr_clicked()
     }
 
     algorithm = "rr";
+    ui->pQuanta->setEnabled(1);
+    ui->prempetive->setDisabled(1);
 
 }
 
