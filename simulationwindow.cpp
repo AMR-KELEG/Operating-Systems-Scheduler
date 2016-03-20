@@ -32,11 +32,11 @@ SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quant
     std::stack<Qt::GlobalColor> colorStack;
 
     // assign color to each process
-    for (auto &i : processVector) {
+    for (int i = 0; i < processVector.size(); ++i) {
         if(colorStack.empty()){
             fillStack(colorStack);
         }
-        i.setColor(colorStack.top());
+        processVector[i].setColor(colorStack.top());
         colorStack.pop();
     }
 
@@ -61,6 +61,7 @@ SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quant
             ui->tableWidget->setItem(0,currentColumnCount-1 , new QTableWidgetItem);
             ui->tableWidget->item(0,currentColumnCount-1)->setBackground(temp.getColor());
             ui->tableWidget->item(0,currentColumnCount-1)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->item(0,currentColumnCount-1)->setTextColor(Qt::black);
             ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(temp.getId()));
         }
     }
