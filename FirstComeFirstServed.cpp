@@ -1,22 +1,12 @@
 #include "FirstComeFirstServed.h"
-FirstComeFirstServed::FirstComeFirstServed(){}
+FirstComeFirstServed::FirstComeFirstServed(){
 
-void FirstComeFirstServed::InitializeScheduler(QList<Process> p)
-{
-    FutureQueue =p;
-    currentTime=0;
-    qSort(FutureQueue.begin(),FutureQueue.end(),Process::isLess);
 }
+
 
 void FirstComeFirstServed::addNewProcess(Process p)
 {
     ReadyQueue.push_back(p);
-}
-
-
-bool FirstComeFirstServed::allProcessesDone()
-{
-    return ReadyQueue.empty() && FutureQueue.empty();
 }
 
 Process FirstComeFirstServed::getNextProcess()
@@ -54,9 +44,4 @@ int FirstComeFirstServed::executeCurrentProcess()
 QList<Process> FirstComeFirstServed::getReadyQueue()
 {
     return ReadyQueue;
-}
-
-bool FirstComeFirstServed::compare(Process p1, Process p2)
-{
-    return 1;
 }

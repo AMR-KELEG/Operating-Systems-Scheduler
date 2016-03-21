@@ -22,7 +22,7 @@ void fillStack(std::stack<Qt::GlobalColor> &colorStack){
     colorStack.push(Qt::darkGreen);
 }
 
-SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, std::string algo,QWidget *parent) :
+SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, std::string algo,bool preempetive,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SimulationWindow)
 {
@@ -43,7 +43,7 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
     if(algo == "fcfs"){
         algorithm = new FirstComeFirstServed();
     }else if(algo == "sjf"){
-
+        algorithm = new ShortestJobFirst(preempetive);
     }else if(algo == "ps"){
 
     }else if(algo == "rr"){

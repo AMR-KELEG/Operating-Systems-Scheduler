@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     simulationwindow.cpp \
     FirstComeFirstServed.cpp \
     Process.cpp \
-    ../shortestjobfirst.cpp
+    shortestjobfirst.cpp \
+    SchedulingAlgorithm.cpp
 
 HEADERS  += mainwindow.h \
     simulationwindow.h \
@@ -25,7 +26,7 @@ HEADERS  += mainwindow.h \
     Process.h \
     RoundRobin.h \
     FirstComeFirstServed.h \
-    ../shortestjobfirst.h
+    shortestjobfirst.h
 
 FORMS    += mainwindow.ui \
     simulationwindow.ui

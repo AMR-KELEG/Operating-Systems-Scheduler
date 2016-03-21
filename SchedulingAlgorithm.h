@@ -5,15 +5,17 @@
 class SchedulingAlgorithm
 {
 protected:
+    QList<Process> ReadyQueue;
+    QList<Process> FutureQueue;
+    int currentTime;
     virtual void addNewProcess(Process p)=0;
-    virtual bool compare(Process p1,Process p2)=0;
 public:
-    virtual void InitializeScheduler(QList<Process> p)=0;
     virtual Process getNextProcess()=0;
     virtual int executeCurrentProcess()=0;
-    virtual bool allProcessesDone()=0;
     virtual QList<Process> getReadyQueue()=0;
 
+    void InitializeScheduler(QList<Process> p);
+    bool allProcessesDone();
     void ChangeAlgorithm(SchedulingAlgorithm * sa);
 };
 

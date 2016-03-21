@@ -49,7 +49,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     this->hide();
-    simwin = new SimulationWindow(processQueue ,quanta, algorithm );
+    simwin = new SimulationWindow(processQueue ,quanta, algorithm, ui->prempetive->isChecked() );
     simwin->show();
 }
 
