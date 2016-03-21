@@ -10,6 +10,8 @@
 #include "SchedulingAlgorithm.h"
 #include "FirstComeFirstServed.h"
 #include "shortestjobfirst.h"
+#include "priorityscheduling.h"
+#include "roundrobin.h"
 
 namespace Ui {
 class SimulationWindow;

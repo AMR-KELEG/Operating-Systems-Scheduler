@@ -39,7 +39,7 @@ void MainWindow::on_pushButton_clicked()
     int arrivalTime,burstTime,priority;
     quanta = ui->pQuanta->text().toInt();
 
-
+    processQueue.clear();
     for(int i=0;i<num_of_process;i++)
     {
         arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
@@ -48,7 +48,7 @@ void MainWindow::on_pushButton_clicked()
         processQueue.push_back(Process(i+1,arrivalTime,burstTime,priority));
     }
 
-    this->hide();
+    //this->hide();
     simwin = new SimulationWindow(processQueue ,quanta, algorithm, ui->prempetive->isChecked() );
     simwin->show();
 }

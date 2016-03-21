@@ -45,9 +45,9 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
     }else if(algo == "sjf"){
         algorithm = new ShortestJobFirst(preempetive);
     }else if(algo == "ps"){
-
+        algorithm = new PriorityScheduling(preempetive);
     }else if(algo == "rr"){
-
+        algorithm = new RoundRobin(quantum);
     }
 
     algorithm->InitializeScheduler(processVector);
