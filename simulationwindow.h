@@ -19,7 +19,7 @@ class SimulationWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit SimulationWindow(std::vector<Process> processVector =std::vector<Process>(),int quantum=0, std::string algo="0", QWidget *parent = 0);
+    explicit SimulationWindow(QList<Process> processVector =QList<Process>(),int quantum=0, std::string algo="0", QWidget *parent = 0);
     SchedulingAlgorithm * algorithm;
     ~SimulationWindow();
 

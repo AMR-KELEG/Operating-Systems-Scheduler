@@ -22,13 +22,13 @@ void fillStack(std::stack<Qt::GlobalColor> &colorStack){
     colorStack.push(Qt::darkGreen);
 }
 
-SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quantum, std::string algo,QWidget *parent) :
+SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, std::string algo,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SimulationWindow)
 {
     ui->setupUi(this);
 
-    int currentColumnCount;    
+    int currentColumnCount;
     std::stack<Qt::GlobalColor> colorStack;
 
     // assign color to each process
@@ -64,7 +64,7 @@ SimulationWindow::SimulationWindow(std::vector<Process> processVector ,int quant
             ui->tableWidget->item(0,currentColumnCount-1)->setTextColor(Qt::black);
             ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(temp.getId()));
         }
-    }
+    }          
 }
 
 SimulationWindow::~SimulationWindow()

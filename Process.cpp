@@ -21,31 +21,19 @@ void Process::setColor(const Qt::GlobalColor &value)
 
 bool Process::isLess(Process p1,Process p2)
 {
-    if(p1.arrivalTime<p2.arrivalTime)
-        return 1;
-    if(p1.arrivalTime==p2.arrivalTime)
-    {
-        if(p1.priority<p2.priority)
-        {
-            return 1;
-        }
-        else if(p1.priority==p2.priority)
-        {
-            if(p1.burstTime<p2.burstTime)
-                return 1;
-            return 0;
-        }
-        else
-        {
-            return 0;
-        }
-
-    }
-    return 0;
+    return (p1.arrivalTime<p2.arrivalTime);
 }
 
 Process Process::GetNullProcess()
 {
+    /*
+    NULLPROCESS;
+    if(NULLPROCESS==NULL)
+    {
+        Process::NULLPROCESS=new Process();
+    }
+    return *(Process::NULLPROCESS);
+    */
     return Process();
 }
 

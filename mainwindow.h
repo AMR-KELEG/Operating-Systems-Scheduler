@@ -40,7 +40,7 @@ private:
     QGridLayout *process_grid;
     QWidget *viewport ;
     int num_of_process;
-    std::vector<Process> processVector;
+    QList<Process> processQueue;
     int quanta;
     std::string algorithm;
 

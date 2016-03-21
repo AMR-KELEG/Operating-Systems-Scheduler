@@ -45,11 +45,11 @@ void MainWindow::on_pushButton_clicked()
         arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
         burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
         priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
-        processVector.push_back(Process(i+1,arrivalTime,burstTime,priority));
+        processQueue.push_back(Process(i+1,arrivalTime,burstTime,priority));
     }
 
     this->hide();
-    simwin = new SimulationWindow(processVector ,quanta, algorithm );
+    simwin = new SimulationWindow(processQueue ,quanta, algorithm );
     simwin->show();
 }
 

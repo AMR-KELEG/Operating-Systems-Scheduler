@@ -2,13 +2,14 @@
 #define PROCESS_H
 #include <QMainWindow>
 class Process{
-    private:
+private:
     int id;
     int arrivalTime;
     int burstTime;
     int priority;
     Qt::GlobalColor color;
-    public:
+    //static Process * NULLPROCESS;
+public:
     static Process GetNullProcess();
     static bool isLess(Process p1,Process p2);
     Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::black);

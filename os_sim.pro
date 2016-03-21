@@ -16,14 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     simulationwindow.cpp \
     FirstComeFirstServed.cpp \
-    Process.cpp
+    Process.cpp \
+    ../shortestjobfirst.cpp
 
 HEADERS  += mainwindow.h \
     simulationwindow.h \
     SchedulingAlgorithm.h \
     Process.h \
     RoundRobin.h \
-    FirstComeFirstServed.h
+    FirstComeFirstServed.h \
+    ../shortestjobfirst.h
 
 FORMS    += mainwindow.ui \
     simulationwindow.ui

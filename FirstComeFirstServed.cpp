@@ -1,11 +1,11 @@
 #include "FirstComeFirstServed.h"
 FirstComeFirstServed::FirstComeFirstServed(){}
 
-void FirstComeFirstServed::InitializeScheduler(std::vector<Process> p)
+void FirstComeFirstServed::InitializeScheduler(QList<Process> p)
 {
-    for(unsigned int i=0;i<p.size();i++)
-        addNewProcess(p[i]);
-    qSort(ReadyQueue.begin(),ReadyQueue.end(),Process::isLess);
+    FutureQueue =p;
+    currentTime=0;
+    qSort(FutureQueue.begin(),FutureQueue.end(),Process::isLess);
 }
 
 void FirstComeFirstServed::addNewProcess(Process p)
@@ -16,22 +16,47 @@ void FirstComeFirstServed::addNewProcess(Process p)
 
 bool FirstComeFirstServed::allProcessesDone()
 {
-    return ReadyQueue.empty();
+    return ReadyQueue.empty() && FutureQueue.empty();
 }
 
 Process FirstComeFirstServed::getNextProcess()
 {
+    while(!FutureQueue.empty() && FutureQueue.first().getArrivalTime()<=currentTime)
+    {
+        ReadyQueue.push_back(FutureQueue.first());
+        FutureQueue.pop_front();
+    }
+
     if(ReadyQueue.empty())
-        return Process::GetNullProcess();
+    {
+        //Return NULL PROCESS
+        return Process();
+
+    }
     return ReadyQueue.front();
 }
 
 
 int FirstComeFirstServed::executeCurrentProcess()
 {
-    if(allProcessesDone())
-        return -1;
-    Process currentProcess=ReadyQueue.front();
+    if(ReadyQueue.empty())
+    {
+        int tempCurrentTime=currentTime;
+        currentTime=FutureQueue.first().getArrivalTime();
+        return FutureQueue.first().getArrivalTime()-tempCurrentTime;
+    }
+    int currentProcessTime=ReadyQueue.front().getBurstTime();
+    currentTime+=currentProcessTime;
     ReadyQueue.pop_front();
-    return currentProcess.getBurstTime();
+    return currentProcessTime;
+}
+
+QList<Process> FirstComeFirstServed::getReadyQueue()
+{
+    return ReadyQueue;
+}
+
+bool FirstComeFirstServed::compare(Process p1, Process p2)
+{
+    return 1;
 }
