@@ -65,6 +65,12 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
             ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(temp.getId()));
         }
     }          
+
+    QStringList list;
+    for(int i=0;i<currentColumnCount;i++){
+        list<<QString::number(i);
+    }
+    ui->tableWidget->setHorizontalHeaderLabels(list);
 }
 
 SimulationWindow::~SimulationWindow()

@@ -3,7 +3,7 @@ void SchedulingAlgorithm::InitializeScheduler(QList<Process> p)
 {
     FutureQueue =p;
     qSort(FutureQueue.begin(),FutureQueue.end(),Process::isLess);
-    currentTime=1;
+    currentTime=0;
 
 }
 
