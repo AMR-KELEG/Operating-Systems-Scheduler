@@ -7,12 +7,12 @@ private:
     int arrivalTime;
     int burstTime;
     int priority;
-    Qt::GlobalColor color;
+    QColor color;
     //static Process * NULLPROCESS;
 public:
     static Process GetNullProcess();
     static bool isLess(Process p1,Process p2);
-    Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::black);
+    Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::white);
     int getPriority() const;
     void setPriority(int value);
     int getBurstTime() const;
@@ -21,8 +21,8 @@ public:
     void setArrivalTime(int value);    
     int getId() const;
     void setId(int value);
-    Qt::GlobalColor getColor() const;
-    void setColor(const Qt::GlobalColor &value);
+    QColor getColor();
+    void setColor(QColor value);
 
 };
 

@@ -2,9 +2,6 @@
 #define SIMULATIONWINDOW_H
 
 #include <QMainWindow>
-#include <vector>
-#include <algorithm>
-#include <stack>
 
 #include "Process.h"
 #include "SchedulingAlgorithm.h"
