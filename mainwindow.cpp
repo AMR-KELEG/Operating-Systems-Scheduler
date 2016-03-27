@@ -7,7 +7,7 @@
 #include <QLineEdit>
 #include <QWidget>
 #include <QPushButton>
-
+#include <Qdebug>
 
 
 
@@ -110,6 +110,7 @@ void MainWindow::on_add_process_clicked()
     QLineEdit *burst = new QLineEdit();
     QLineEdit *prio  = new QLineEdit();
     QPushButton *btn = new QPushButton("x");
+    connect(btn,SIGNAL(clicked()),this,SLOT(del_row()));
 
     arriv->setObjectName(QString("pArrival%1").arg(num_of_process));
     burst->setObjectName(QString("pBurst%1").arg(num_of_process));
@@ -124,4 +125,44 @@ void MainWindow::on_add_process_clicked()
     process_grid->addWidget(btn,num_of_process,3);
     num_of_process++;
 
+}
+
+
+void MainWindow::del_row()
+{
+    QPushButton * senderButton = qobject_cast<QPushButton *>(this->sender());
+    QString btnId= senderButton->objectName().split("pDelbtn")[1];
+    removeRow(process_grid,btnId.toInt(),1);
+}
+
+
+void MainWindow::remove(QGridLayout *layout, int row, int column, bool deleteWidgets) {
+    for (int i = layout->count() - 1; i >= 0; i--) {
+        int r, c, rs, cs;
+        layout->getItemPosition(i, &r, &c, &rs, &cs);
+        if ((r <= row && r + rs - 1 >= row) || (c <= column && c + cs - 1 >= column)) {
+            QLayoutItem *item = layout->takeAt(i);
+            if (deleteWidgets) {
+                deleteChildWidgets(item);
+            }
+            delete item;
+        }
+    }
+}
+
+
+void MainWindow::deleteChildWidgets(QLayoutItem *item) {
+    if (item->layout()) {
+        for (int i = 0; i < item->layout()->count(); i++) {
+            deleteChildWidgets(item->layout()->itemAt(i));
+        }
+    }
+    delete item->widget();
+}
+
+
+void MainWindow::removeRow(QGridLayout *layout, int row, bool deleteWidgets) {
+    remove(layout, row, -1, deleteWidgets);
+    layout->setRowMinimumHeight(row, 0);
+    layout->setRowStretch(row, 0);
 }

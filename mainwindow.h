@@ -34,6 +34,8 @@ private slots:
 
     void on_add_process_clicked();
 
+    void del_row();
+
 private:
     Ui::MainWindow *ui;
     SimulationWindow *simwin;
@@ -43,6 +45,10 @@ private:
     QList<Process> processQueue;
     int quanta;
     std::string algorithm;
+    void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
+    void deleteChildWidgets(QLayoutItem *item);
+    void removeRow(QGridLayout *layout, int row, bool deleteWidgets);
+
 
 };
 
