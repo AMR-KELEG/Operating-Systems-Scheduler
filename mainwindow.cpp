@@ -42,10 +42,13 @@ void MainWindow::on_pushButton_clicked()
     processQueue.clear();
     for(int i=0;i<num_of_process;i++)
     {
-        arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
-        burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
-        priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
-        processQueue.push_back(Process(i+1,arrivalTime,burstTime,priority));
+        if(isExisting[i])
+        {
+          arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
+          burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
+          priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
+          processQueue.push_back(Process(i+1,arrivalTime,burstTime,priority));
+        }
     }
 
     //this->hide();
@@ -123,7 +126,8 @@ void MainWindow::on_add_process_clicked()
     process_grid->addWidget(burst,num_of_process,1);
     process_grid->addWidget(prio,num_of_process,2);
     process_grid->addWidget(btn,num_of_process,3);
-    num_of_process++;
+    num_of_process++;    
+    isExisting.push_back(1);
 
 }
 
@@ -133,6 +137,7 @@ void MainWindow::del_row()
     QPushButton * senderButton = qobject_cast<QPushButton *>(this->sender());
     QString btnId= senderButton->objectName().split("pDelbtn")[1];
     removeRow(process_grid,btnId.toInt(),1);
+    isExisting[btnId.toInt()]=0;
 }
 
 

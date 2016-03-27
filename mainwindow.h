@@ -48,6 +48,7 @@ private:
     void remove(QGridLayout *layout, int row, int column, bool deleteWidgets);
     void deleteChildWidgets(QLayoutItem *item);
     void removeRow(QGridLayout *layout, int row, bool deleteWidgets);
+    std::vector <bool> isExisting;
 
 
 };
