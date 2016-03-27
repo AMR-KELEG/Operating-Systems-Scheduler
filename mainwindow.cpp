@@ -51,7 +51,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     //this->hide();
-    simwin = new SimulationWindow(processQueue ,quanta, algorithm, ui->prempetive->isChecked() );
+    simwin = new SimulationWindow(processQueue ,quanta, algorithm, ui->preemptive->isChecked() );
     simwin->show();
 }
 
@@ -64,7 +64,7 @@ void MainWindow::on_ps_clicked()
 
     algorithm = "ps";
     ui->pQuanta->setDisabled(1);
-    ui->prempetive->setEnabled(1);
+    ui->preemptive->setEnabled(1);
 
 }
 
@@ -77,7 +77,7 @@ void MainWindow::on_sjf_clicked()
 
     algorithm = "sjf";
     ui->pQuanta->setDisabled(1);
-    ui->prempetive->setEnabled(1);
+    ui->preemptive->setEnabled(1);
 }
 
 void MainWindow::on_fcfs_clicked()
@@ -89,7 +89,7 @@ void MainWindow::on_fcfs_clicked()
 
     algorithm = "fcfs";
     ui->pQuanta->setDisabled(1);
-    ui->prempetive->setDisabled(1);
+    ui->preemptive->setDisabled(1);
 
 }
 
@@ -102,7 +102,7 @@ void MainWindow::on_rr_clicked()
 
     algorithm = "rr";
     ui->pQuanta->setEnabled(1);
-    ui->prempetive->setDisabled(1);
+    ui->preemptive->setDisabled(1);
 
 }
 

@@ -1,6 +1,6 @@
 #include "priorityscheduling.h"
 
-PriorityScheduling::PriorityScheduling(bool isPreeEmptive)
+PriorityScheduling::PriorityScheduling(bool isPreemptive)
 {
     this->isPreemptive=isPreemptive;
 }

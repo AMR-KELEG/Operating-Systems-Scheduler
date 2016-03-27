@@ -117,7 +117,7 @@
       <string>Q</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="prempetive">
+    <widget class="QCheckBox" name="preemptive">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -127,7 +127,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>prempetive</string>
+      <string>preemptive</string>
      </property>
     </widget>
    </widget>
