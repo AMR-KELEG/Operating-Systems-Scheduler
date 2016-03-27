@@ -2,7 +2,7 @@
 
 ShortestJobFirst::ShortestJobFirst(bool isPreemptive)
 {
-   this->isPreemptive=isPreemptive;
+    this->isPreemptive=isPreemptive;
 }
 
 void ShortestJobFirst::addNewProcess(Process p)

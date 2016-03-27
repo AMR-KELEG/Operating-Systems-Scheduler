@@ -3,10 +3,8 @@
 
 #include <QMainWindow>
 #include <QGridLayout>
-#include <QString>
 #include "simulationwindow.h"
 #include "Process.h"
-#include <vector>
 
 namespace Ui {
 class MainWindow;

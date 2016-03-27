@@ -1,6 +1,8 @@
 #ifndef PROCESS_H
 #define PROCESS_H
+
 #include <QMainWindow>
+
 class Process{
 private:
     int id;

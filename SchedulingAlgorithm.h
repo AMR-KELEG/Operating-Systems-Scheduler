@@ -1,7 +1,8 @@
 #ifndef SCHEDULINGALGORITHM_H
 #define SCHEDULINGALGORITHM_H
+
 #include "Process.h"
-#include <QtAlgorithms>
+
 class SchedulingAlgorithm
 {
 protected:

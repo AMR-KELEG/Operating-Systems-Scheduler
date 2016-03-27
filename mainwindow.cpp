@@ -1,15 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <vector>
-#include <utility>
-#include <queue>
-#include <QLabel>
-#include <QLineEdit>
-#include <QWidget>
-#include <QPushButton>
-
-
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

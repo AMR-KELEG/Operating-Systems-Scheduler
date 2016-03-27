@@ -1,4 +1,5 @@
 #include "SchedulingAlgorithm.h"
+
 void SchedulingAlgorithm::InitializeScheduler(QList<Process> p)
 {
     FutureQueue =p;

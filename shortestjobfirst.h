@@ -1,6 +1,8 @@
 #ifndef SHORTESTJOBFIRST_H
 #define SHORTESTJOBFIRST_H
+
 #include "SchedulingAlgorithm.h"
+
 class ShortestJobFirst : public SchedulingAlgorithm
 {
 private:

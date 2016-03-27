@@ -1,6 +1,8 @@
 #ifndef ROUNDROBIN_H
 #define ROUNDROBIN_H
+
 #include "SchedulingAlgorithm.h"
+
 class RoundRobin: public SchedulingAlgorithm
 {
     int quantum;

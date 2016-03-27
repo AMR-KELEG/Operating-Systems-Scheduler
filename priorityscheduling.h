@@ -1,5 +1,6 @@
 #ifndef PRIORITYSCHEDULING_H
 #define PRIORITYSCHEDULING_H
+
 #include <SchedulingAlgorithm.h>
 
 class PriorityScheduling : public SchedulingAlgorithm

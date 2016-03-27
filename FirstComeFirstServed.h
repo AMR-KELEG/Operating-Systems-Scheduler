@@ -1,5 +1,6 @@
 #ifndef FIRSTCOMEFIRSTSERVED_H
 #define FIRSTCOMEFIRSTSERVED_H
+
 #include "SchedulingAlgorithm.h"
 
 class FirstComeFirstServed:public SchedulingAlgorithm

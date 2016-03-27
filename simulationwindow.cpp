@@ -1,6 +1,5 @@
 #include "simulationwindow.h"
 #include "ui_simulationwindow.h"
-#include <stdlib.h>
 
 QColor generateRandomColor(QColor mix){
     int red = rand() % 255 + 1;
@@ -12,7 +11,6 @@ QColor generateRandomColor(QColor mix){
     blue = (blue + mix.blue()) /2;
 
     return QColor(red,green,blue);
-
 }
 
 SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, std::string algo,bool preempetive,QWidget *parent) :
