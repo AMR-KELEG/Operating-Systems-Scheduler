@@ -1,18 +1,25 @@
 #include "simulationwindow.h"
 #include "ui_simulationwindow.h"
-#include <stdlib.h>
+#include "qdebug.h"
 
-QColor generateRandomColor(QColor mix){
-    int red = rand() % 255 + 1;
-    int green = rand() % 255 + 1;
-    int blue = rand() % 255 + 1;
 
-    red = (red + mix.red()) /2;
-    green = (green + mix.green()) /2;
-    blue = (blue + mix.blue()) /2;
-
-    return QColor(red,green,blue);
-
+void fillStack(std::stack<Qt::GlobalColor> &colorStack){
+    colorStack.push(Qt::darkYellow);
+    colorStack.push(Qt::darkMagenta);
+    colorStack.push(Qt::darkBlue);
+    colorStack.push(Qt::green);
+    colorStack.push(Qt::lightGray);
+    colorStack.push(Qt::darkGray);
+    colorStack.push(Qt::black);
+    colorStack.push(Qt::darkRed);
+    colorStack.push(Qt::red);
+    colorStack.push(Qt::darkCyan);
+    colorStack.push(Qt::blue);
+    colorStack.push(Qt::gray);
+    colorStack.push(Qt::cyan);
+    colorStack.push(Qt::yellow);
+    colorStack.push(Qt::magenta);
+    colorStack.push(Qt::darkGreen);
 }
 
 SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, std::string algo,bool preempetive,QWidget *parent) :
@@ -22,9 +29,15 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
     ui->setupUi(this);
 
     int currentColumnCount;
+    std::stack<Qt::GlobalColor> colorStack;
 
+    // assign color to each process
     for (int i = 0; i < processVector.size(); ++i) {
-        processVector[i].setColor(generateRandomColor(Qt::white));
+        if(colorStack.empty()){
+            fillStack(colorStack);
+        }
+        processVector[i].setColor(colorStack.top());
+        colorStack.pop();
     }
 
     if(algo == "fcfs"){
@@ -40,29 +53,18 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
     algorithm->InitializeScheduler(processVector);
 
     while(!algorithm->allProcessesDone()) {
-        Process currentProcess = algorithm->getNextProcess();
+        Process temp = algorithm->getNextProcess();
         int executionTime = algorithm->executeCurrentProcess();
         for (int j = 0; j < executionTime; ++j) {
             currentColumnCount = ui->tableWidget->columnCount();
             ui->tableWidget->setColumnCount(++currentColumnCount);
-            QTableWidgetItem* currentColumn = new QTableWidgetItem;
-            ui->tableWidget->setItem(0,currentColumnCount-1 , currentColumn);
-            currentColumn->setBackground(currentProcess.getColor());
-            currentColumn->setTextAlignment(Qt::AlignCenter);
-            if(currentProcess.getColor()==Qt::white){
-                currentColumn->setTextColor(Qt::white);
-            }else{
-                currentColumn->setTextColor(Qt::black);
-            }
-            currentColumn->setText(QString::number(currentProcess.getId()));
+            ui->tableWidget->setItem(0,currentColumnCount-1 , new QTableWidgetItem);
+            ui->tableWidget->item(0,currentColumnCount-1)->setBackground(temp.getColor());
+            ui->tableWidget->item(0,currentColumnCount-1)->setTextAlignment(Qt::AlignCenter);
+            ui->tableWidget->item(0,currentColumnCount-1)->setTextColor(Qt::black);
+            ui->tableWidget->item(0,currentColumnCount-1)->setText(QString("%1").arg(temp.getId()));
         }
     }          
-
-    QStringList list;
-    for(int i=0;i<currentColumnCount;i++){
-        list<<QString::number(i);
-    }
-    ui->tableWidget->setHorizontalHeaderLabels(list);
 }
 
 SimulationWindow::~SimulationWindow()

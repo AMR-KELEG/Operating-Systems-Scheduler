@@ -2,6 +2,9 @@
 #define SIMULATIONWINDOW_H
 
 #include <QMainWindow>
+#include <vector>
+#include <algorithm>
+#include <stack>
 
 #include "Process.h"
 #include "SchedulingAlgorithm.h"
@@ -25,6 +28,7 @@ public:
 
 private:
     Ui::SimulationWindow *ui;
+    QString horizontalHeaderLabels;
 };
 
 #endif // SIMULATIONWINDOW_H

@@ -9,12 +9,12 @@ void Process::setId(int value)
     id = value;
 }
 
-QColor Process::getColor()
+Qt::GlobalColor Process::getColor() const
 {
     return color;
 }
 
-void Process::setColor(QColor value)
+void Process::setColor(const Qt::GlobalColor &value)
 {
     color = value;
 }

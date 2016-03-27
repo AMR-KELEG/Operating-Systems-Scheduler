@@ -35,5 +35,4 @@ FORMS    += mainwindow.ui \
     simulationwindow.ui
 
 
-CONFIG += c++11
 
