@@ -40,15 +40,19 @@ int ShortestJobFirst::executeCurrentProcess()
     if(isPreemptive)
     {
         currentTime++;
-        ReadyQueue.first().setBurstTime(ReadyQueue.first().getBurstTime()-1);
-        if(ReadyQueue.first().getBurstTime()==0)
+        ReadyQueue.first().setRemainingTime(ReadyQueue.first().getRemainingTime()-1);
+        if(ReadyQueue.first().getRemainingTime()==0)
+        {
+            totalWaitingTime+=currentTime-ReadyQueue.front().getArrivalTime()-ReadyQueue.front().getBurstTime();
             ReadyQueue.pop_front();
+        }
         return 1;
     }
     else
     {
-        int currentProcessTime=ReadyQueue.front().getBurstTime();
+        int currentProcessTime=ReadyQueue.front().getRemainingTime();
         currentTime+=currentProcessTime;
+        totalWaitingTime+=currentTime-ReadyQueue.front().getArrivalTime()-ReadyQueue.front().getBurstTime();
         ReadyQueue.pop_front();
         return currentProcessTime;
     }
@@ -61,6 +65,6 @@ QList<Process> ShortestJobFirst::getReadyQueue()
 
 bool ShortestJobFirst::compare(Process p1, Process p2)
 {
-    return p1.getBurstTime()<p2.getBurstTime();
+    return p1.getRemainingTime()<p2.getRemainingTime();
 }
 

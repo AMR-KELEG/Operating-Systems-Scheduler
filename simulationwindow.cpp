@@ -55,7 +55,7 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
             currentColumn->setText(QString::number(currentProcess.getId()));
         }
     }          
-
+    ui->time->setText(QString::number((double)algorithm->getAverageWaitingTime()));
     QStringList list;
     for(int i=0;i<currentColumnCount;i++){
         list<<QString::number(i);

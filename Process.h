@@ -7,6 +7,7 @@ class Process{
 private:
     int id;
     int arrivalTime;
+    int remainingTime;
     int burstTime;
     int priority;
     QColor color;
@@ -17,8 +18,8 @@ public:
     Process(int id=0,int a=0,int b=0,int p=0, Qt::GlobalColor color = Qt::white);
     int getPriority() const;
     void setPriority(int value);
-    int getBurstTime() const;
-    void setBurstTime(int value);
+    int getRemainingTime() const;
+    void setRemainingTime(int value);
     int getArrivalTime() const;
     void setArrivalTime(int value);    
     int getId() const;
@@ -26,6 +27,8 @@ public:
     QColor getColor();
     void setColor(QColor value);
 
+    int getBurstTime() const;
+    void setBurstTime(int value);
 };
 
 #endif // PROCESS_H

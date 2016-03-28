@@ -39,13 +39,17 @@ int RoundRobin::executeCurrentProcess()
 
     Process currentProcess = ReadyQueue.front();
     ReadyQueue.pop_front();
-    int executionTime=std::min(quantum ,currentProcess.getBurstTime());
-    currentProcess.setBurstTime(currentProcess.getBurstTime()-executionTime);
-    if(currentProcess.getBurstTime()>0)
+    int executionTime=std::min(quantum ,currentProcess.getRemainingTime());
+    currentProcess.setRemainingTime(currentProcess.getRemainingTime()-executionTime);
+    currentTime+=executionTime;
+    if(currentProcess.getRemainingTime()>0)
     {
         ReadyQueue.push_back(currentProcess);
     }
-    currentTime+=executionTime;
+    else
+    {
+        totalWaitingTime+=currentTime-currentProcess.getArrivalTime()-currentProcess.getBurstTime();
+    }
     return executionTime;
 }
 

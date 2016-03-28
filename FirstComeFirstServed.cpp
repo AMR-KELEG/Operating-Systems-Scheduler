@@ -35,8 +35,9 @@ int FirstComeFirstServed::executeCurrentProcess()
         currentTime=FutureQueue.first().getArrivalTime();
         return FutureQueue.first().getArrivalTime()-tempCurrentTime;
     }
-    int currentProcessTime=ReadyQueue.front().getBurstTime();
+    int currentProcessTime=ReadyQueue.front().getRemainingTime();
     currentTime+=currentProcessTime;
+    totalWaitingTime+=currentTime-ReadyQueue.front().getArrivalTime()-ReadyQueue.front().getBurstTime();
     ReadyQueue.pop_front();
     return currentProcessTime;
 }

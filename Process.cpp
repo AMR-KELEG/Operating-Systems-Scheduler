@@ -25,6 +25,16 @@ bool Process::isLess(Process p1,Process p2)
     return (p1.arrivalTime<p2.arrivalTime);
 }
 
+
+int Process::getBurstTime() const
+{
+    return burstTime;
+}
+
+void Process::setBurstTime(int value)
+{
+    burstTime = value;
+}
 Process Process::GetNullProcess()
 {
     /*
@@ -42,7 +52,7 @@ Process::Process(int id,int a,int b,int p, Qt::GlobalColor c)
 {
     this->id=id;
     priority=p;
-    burstTime=b;
+    remainingTime=burstTime=b;
     arrivalTime=a;
     color=c;
 }
@@ -57,14 +67,14 @@ void Process::setArrivalTime(int value)
     arrivalTime = value;
 }
 
-int Process::getBurstTime() const
+int Process::getRemainingTime() const
 {
-    return burstTime;
+    return remainingTime;
 }
 
-void Process::setBurstTime(int value)
+void Process::setRemainingTime(int value)
 {
-    burstTime = value;
+    remainingTime = value;
 }
 
 int Process::getPriority() const

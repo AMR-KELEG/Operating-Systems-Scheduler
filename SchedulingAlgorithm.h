@@ -9,6 +9,8 @@ protected:
     QList<Process> ReadyQueue;
     QList<Process> FutureQueue;
     int currentTime;
+    long long totalWaitingTime;
+    long long numberOfProcesses;
     virtual void addNewProcess(Process p)=0;
 public:
     virtual Process getNextProcess()=0;
@@ -18,6 +20,7 @@ public:
     void InitializeScheduler(QList<Process> p);
     bool allProcessesDone();
     void ChangeAlgorithm(SchedulingAlgorithm * sa);
+    long double getAverageWaitingTime() const;
 };
 
 #endif // SCHEDULINGALGORITHM_H
