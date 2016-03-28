@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     shortestjobfirst.cpp \
     SchedulingAlgorithm.cpp \
     priorityscheduling.cpp \
-    roundrobin.cpp
+    roundrobin.cpp \
+    delaythread.cpp
 
 HEADERS  += mainwindow.h \
     simulationwindow.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     FirstComeFirstServed.h \
     shortestjobfirst.h \
     priorityscheduling.h \
-    roundrobin.h
+    roundrobin.h \
+    delaythread.h
 
 FORMS    += mainwindow.ui \
     simulationwindow.ui

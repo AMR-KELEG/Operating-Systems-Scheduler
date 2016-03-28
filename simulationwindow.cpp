@@ -36,8 +36,21 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
     }
 
     algorithm->InitializeScheduler(processVector);
+    thread =new DelayThread(this);
+    connect(thread,SIGNAL(wakeUp()),this,SLOT(onWakeUp()));
+    thread->start();
+}
 
-    while(!algorithm->allProcessesDone()) {
+SimulationWindow::~SimulationWindow()
+{
+    delete ui;
+}
+
+void SimulationWindow::onWakeUp()
+{
+
+    int currentColumnCount=ui->tableWidget->columnCount();
+    if(!algorithm->allProcessesDone()) {
         Process currentProcess = algorithm->getNextProcess();
         int executionTime = algorithm->executeCurrentProcess();
         for (int j = 0; j < executionTime; ++j) {
@@ -54,16 +67,21 @@ SimulationWindow::SimulationWindow(QList<Process> processVector ,int quantum, st
             }
             currentColumn->setText(QString::number(currentProcess.getId()));
         }
-    }          
-    ui->time->setText(QString::number((double)algorithm->getAverageWaitingTime()));
-    QStringList list;
-    for(int i=0;i<currentColumnCount;i++){
-        list<<QString::number(i);
+        QStringList list;
+        for(int i=0;i<currentColumnCount;i++){
+            list<<QString::number(i);
+        }
+        ui->tableWidget->setHorizontalHeaderLabels(list);
+        if(algorithm->allProcessesDone())
+        {
+            ui->time->setText(QString::number((double)algorithm->getAverageWaitingTime()));
+            thread->terminate();
+        }
     }
-    ui->tableWidget->setHorizontalHeaderLabels(list);
-}
+    else
+    {
+        ui->time->setText(QString::number((double)algorithm->getAverageWaitingTime()));
+        thread->terminate();
+    }
 
-SimulationWindow::~SimulationWindow()
-{
-    delete ui;
 }
