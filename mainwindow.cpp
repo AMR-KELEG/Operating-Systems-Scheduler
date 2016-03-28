@@ -43,7 +43,7 @@ void MainWindow::on_pushButton_clicked()
     }
 
     QMessageBox msgBox;
-    if(ui->pQuanta->text().isEmpty() || ui->pQuanta->text().toInt()<=0){
+    if(ui->pQuanta->isEnabled() &&( ui->pQuanta->text().isEmpty() || ui->pQuanta->text().toInt()<=0)){
         msgBox.setText("Please enter a valid quantum (qunatum > 0)");
         msgBox.exec();
     }else{
