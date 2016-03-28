@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     viewport->setLayout(process_grid);
     ui->process_area->setWidget(viewport);
 
+    validator = new QIntValidator();
+    ui->pQuanta->setValidator(validator);
+
     num_of_process = 0;
     MainWindow::on_fcfs_clicked();
 
@@ -20,8 +24,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -40,9 +42,14 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 
-    //this->hide();
-    simwin = new SimulationWindow(processQueue ,quanta, algorithm, ui->preemptive->isChecked() );
-    simwin->show();
+    QMessageBox msgBox;
+    if(ui->pQuanta->text().isEmpty() || ui->pQuanta->text().toInt()<=0){
+        msgBox.setText("Please enter a valid quantum (qunatum > 0)");
+        msgBox.exec();
+    }else{
+        simwin = new SimulationWindow(processQueue, quanta, algorithm, ui->preemptive->isChecked() );
+        simwin->show();
+    }
 }
 
 void MainWindow::on_ps_clicked()
@@ -117,7 +124,6 @@ void MainWindow::on_add_process_clicked()
     process_grid->addWidget(btn,num_of_process,3);
     num_of_process++;
     isExisting.push_back(1);
-
 }
 
 

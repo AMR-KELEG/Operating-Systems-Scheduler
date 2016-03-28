@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QGridLayout>
+#include <QValidator>
+
 #include "simulationwindow.h"
 #include "Process.h"
 
@@ -47,6 +49,7 @@ private:
     void deleteChildWidgets(QLayoutItem *item);
     void removeRow(QGridLayout *layout, int row, bool deleteWidgets);
     std::vector <bool> isExisting;
+    QValidator *validator;
 
 
 };
