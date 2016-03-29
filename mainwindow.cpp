@@ -31,6 +31,7 @@ void MainWindow::on_pushButton_clicked()
     quanta = ui->pQuanta->text().toInt();
 
     processQueue.clear();
+    int cnt=1;
     for(int i=0;i<num_of_process;i++)
     {
         if(isExisting[i])
@@ -38,7 +39,8 @@ void MainWindow::on_pushButton_clicked()
           arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
           burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
           priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
-          processQueue.push_back(Process(i+1,arrivalTime,burstTime,priority));
+          processQueue.push_back(Process(cnt,arrivalTime,burstTime,priority));
+          cnt++;
         }
     }
 
