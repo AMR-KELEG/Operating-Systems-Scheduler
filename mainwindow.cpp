@@ -50,7 +50,7 @@ void MainWindow::on_pushButton_clicked()
         msgBox.exec();
     }else{
         simwin = new SimulationWindow(processQueue, quanta, algorithm, ui->preemptive->isChecked() );
-        simwin->show();
+        simwin->show();        
     }
 }
 
@@ -58,7 +58,10 @@ void MainWindow::on_ps_clicked()
 {
     for(int i=0; i<num_of_process; i++)
     {
-       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(0);
+        if(isExisting[i])
+        {
+            ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(0);
+        }
     }
 
     algorithm = "ps";
@@ -71,7 +74,10 @@ void MainWindow::on_sjf_clicked()
 {
     for(int i=0; i<num_of_process; i++)
     {
-       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        if(isExisting[i])
+        {
+            ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        }
     }
 
     algorithm = "sjf";
@@ -83,7 +89,10 @@ void MainWindow::on_fcfs_clicked()
 {
     for(int i=0; i<num_of_process; i++)
     {
-       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        if(isExisting[i])
+        {
+            ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        }
     }
 
     algorithm = "fcfs";
@@ -96,7 +105,10 @@ void MainWindow::on_rr_clicked()
 {
     for(int i=0; i<num_of_process; i++)
     {
-       ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        if(isExisting[i])
+        {
+            ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->setDisabled(1);
+        }
     }
 
     algorithm = "rr";
