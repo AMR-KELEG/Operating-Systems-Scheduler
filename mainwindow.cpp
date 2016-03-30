@@ -25,6 +25,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void ShowMsg(QString msg){
+     QMessageBox msgBox;
+     msgBox.setText(msg);
+     msgBox.exec();
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     int arrivalTime,burstTime,priority;
@@ -36,22 +42,41 @@ void MainWindow::on_pushButton_clicked()
     {
         if(isExisting[i])
         {
-          arrivalTime = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text()).toInt();
-          burstTime =  (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text()).toInt();
-          priority =  (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text()).toInt();
-          processQueue.push_back(Process(cnt,arrivalTime,burstTime,priority));
-          cnt++;
+            QString arrivalString = (ui->process_area->findChild<QLineEdit*>(QString("pArrival%1").arg(i))->text());
+            QString burstString = (ui->process_area->findChild<QLineEdit*>(QString("pBurst%1").arg(i))->text());
+            QString priorityString = (ui->process_area->findChild<QLineEdit*>(QString("pPriority%1").arg(i))->text());
+
+            arrivalTime = arrivalString.toInt();
+            burstTime =  burstString.toInt();
+            priority =  priorityString.toInt();
+
+            if(arrivalString.isEmpty() || arrivalTime < 0 || burstString.isEmpty() || burstTime <= 0){
+                ShowMsg(QString("Please enter valid data for each process\n(arrival time >=0 , burst > 0)"));
+                return;
+            }
+
+            if(algorithm == "ps" && (priorityString.isEmpty() || priority < 0)){
+                ShowMsg(QString("Please enter valid priority (priority >= 0)"));
+                return;
+            }
+
+            processQueue.push_back(Process(cnt,arrivalTime,burstTime,priority));
+            cnt++;
         }
     }
 
-    QMessageBox msgBox;
-    if(ui->pQuanta->isEnabled() &&( ui->pQuanta->text().isEmpty() || ui->pQuanta->text().toInt()<=0)){
-        msgBox.setText("Please enter a valid quantum (qunatum > 0)");
-        msgBox.exec();
-    }else{
-        simwin = new SimulationWindow(processQueue, quanta, algorithm, ui->preemptive->isChecked() );
-        simwin->show();        
+    if(cnt == 1){
+        ShowMsg(QString("Please add at leaset one process"));
+        return;
     }
+
+    if(algorithm == "rr" && ( ui->pQuanta->text().isEmpty() || ui->pQuanta->text().toInt()<=0)){
+        ShowMsg(QString("Please enter a valid quantum (qunatum > 0)"));
+        return;
+    }
+
+    simwin = new SimulationWindow(processQueue, quanta, algorithm, ui->preemptive->isChecked() );
+    simwin->show();
 }
 
 void MainWindow::on_ps_clicked()
@@ -122,6 +147,11 @@ void MainWindow::on_add_process_clicked()
     QLineEdit *arriv = new QLineEdit();
     QLineEdit *burst = new QLineEdit();
     QLineEdit *prio  = new QLineEdit();
+
+    arriv->setValidator(validator);
+    burst->setValidator(validator);
+    prio->setValidator(validator);
+
     QPushButton *btn = new QPushButton("x");
     connect(btn,SIGNAL(clicked()),this,SLOT(del_row()));
 
