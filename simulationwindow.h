@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "Process.h"
+#include "PProcess.h"
 #include "SchedulingAlgorithm.h"
 #include "FirstComeFirstServed.h"
 #include "shortestjobfirst.h"

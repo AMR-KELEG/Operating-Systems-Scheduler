@@ -16,7 +16,7 @@ SOURCES += main.cpp\
     mainwindow.cpp \
     simulationwindow.cpp \
     FirstComeFirstServed.cpp \
-    Process.cpp \
+    PProcess.cpp \
     shortestjobfirst.cpp \
     SchedulingAlgorithm.cpp \
     priorityscheduling.cpp \
@@ -26,7 +26,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     simulationwindow.h \
     SchedulingAlgorithm.h \
-    Process.h \
+    PProcess.h \
     FirstComeFirstServed.h \
     shortestjobfirst.h \
     priorityscheduling.h \

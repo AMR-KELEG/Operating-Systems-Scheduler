@@ -1,7 +1,7 @@
 #ifndef SCHEDULINGALGORITHM_H
 #define SCHEDULINGALGORITHM_H
 
-#include "Process.h"
+#include "PProcess.h"
 
 class SchedulingAlgorithm
 {

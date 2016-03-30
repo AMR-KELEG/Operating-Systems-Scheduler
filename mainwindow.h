@@ -6,7 +6,7 @@
 #include <QValidator>
 
 #include "simulationwindow.h"
-#include "Process.h"
+#include "PProcess.h"
 
 namespace Ui {
 class MainWindow;
